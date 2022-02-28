@@ -1,12 +1,7 @@
-import TeamsPage from "./TeamsPage"
-import UsersPage from "./UsersPage"
-
-export default function Home() {
+export default function Home({children}) {
   return (
-    <>
-      <h1>Home</h1>
-      <TeamsPage />
-      <UsersPage />
-    </>
+    <main>
+      {children}
+    </main>
   )
 }
