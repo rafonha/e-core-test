@@ -72,13 +72,13 @@ export default function TeamInfo() {
       <h1>Team Info</h1>
       {(!loadingTeamData && teamData) ?
         <>
-          <ul>
+          <ul data-testid="teamInfoList">
             <li>ID: {teamData.id}</li>
             <li>Name: {teamData.name}</li>
             <li>Team Leader: <Link to={`/user/${teamData.teamLeadId}`}>{getUserName(teamData.teamLeadId)} (id: {teamData.teamLeadId})</Link></li>
           </ul>
           <label htmlFor="teamMembers">Search for team members by ID: </label>
-          <input type="text" name="teamMembers" id="teamMembers" placeholder={filterUser} onChange={handleFilterUserName} />
+          <input data-testid="filterTeamMembers" type="text" name="teamMembers" id="teamMembers" placeholder={filterUser} onChange={handleFilterUserName} />
           <p>Team members:</p>
           <ul>
             {filteredUsers.map(element =>
