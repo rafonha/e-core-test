@@ -37,14 +37,15 @@ export default function TeamsList() {
     : teamsState.teamsData
 
   return (
-    <>
-      <h3>Team list</h3>
-      <input type="text" name="filterTeamsName" id="filterTeamsName" placeholder={filterTeams} onChange={handleFilterTeamsName}/>
-      <ul>
+    <main data-testid="teamInfoPage">
+      <h1>Team list</h1>
+      <label htmlFor="filterTeamsName">Search for teams by name: </label>
+      <input data-testid="filterTeamsInput" type="text" name="filterTeamsName" id="filterTeamsName" placeholder={filterTeams} onChange={handleFilterTeamsName}/>
+      <ul data-testid="teamsList">
         {(!teamsState.loadingTeamsData && teamsState.teamsData) ?
           filteredTeams.map(team => {
             return(
-              <li key={team.id}>
+              <li key={team.id} datatestid="teamListItem">
                 <Link to={`/${team.id}`}>{team.name}</Link>
               </li>
             )
@@ -52,6 +53,6 @@ export default function TeamsList() {
           : <Loading />
         }
       </ul>
-    </>
+    </main>
   )
 }

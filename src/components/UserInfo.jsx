@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 
 export default function UserInfo() {
 
-  let params = useParams();
-
-  console.log("params", params)
+  const params = useParams();
 
   const [userState, setUserState] = useState({
     loadingUserData: false,
@@ -16,19 +14,18 @@ export default function UserInfo() {
   useEffect(() => {
     setUserState({ loadingUserData: true })
 
-    const apiUrlUser = "https://cgjresszgg.execute-api.eu-west-1.amazonaws.com/users/" + params.id
+    const apiUrlUser = "https://cgjresszgg.execute-api.eu-west-1.amazonaws.com/users/" + params.userId
     fetch(apiUrlUser)
       .then((response) => response.json())
       .then((dataUser) => {
         setUserState({ loadingUsersData: false, userData: dataUser })
       });
 
-    }, [params.id])
+    }, [params.userId])
 
-    console.log(userState)
   return (
     <>
-      <h3>User Details</h3>
+      <h1>User Details</h1>
       {(!userState.loadingUserData && userState.userData !== null) ?
         <ul>
           <li>ID: {userState.id}</li>
@@ -37,6 +34,5 @@ export default function UserInfo() {
       : <Loading />
       }
     </>
-
   )
 }

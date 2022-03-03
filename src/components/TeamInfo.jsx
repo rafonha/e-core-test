@@ -20,7 +20,7 @@ export default function TeamInfo() {
   useEffect(() => {
     setTeamState({ loadingTeamData: true })
 
-    const apiUrlTeams = "https://cgjresszgg.execute-api.eu-west-1.amazonaws.com/teams/" + params.id
+    const apiUrlTeams = "https://cgjresszgg.execute-api.eu-west-1.amazonaws.com/teams/" + params.teamId
     fetch(apiUrlTeams)
       .then((response) => response.json())
       .then((dataTeam) => {
@@ -31,10 +31,12 @@ export default function TeamInfo() {
     fetch(apiUrlUsers)
     .then((response) => response.json())
     .then((dataUsers) => {
-      setusersData(dataUsers)
+      if (dataUsers) {
+        setusersData(dataUsers)
+      }
     })
 
-  }, [params.id])
+  }, [params.teamId])
 
   //
   const { loadingTeamData, teamData, teamMembers } = teamState
@@ -43,7 +45,7 @@ export default function TeamInfo() {
   function getUserName(userId) {
     if (usersData) {
       const userName = usersData.find(user => user.id === userId)
-      return `${userName.displayName} (id: ${userId})`
+      return userName.displayName
     } else {
       return "No user info available"
     }
@@ -66,27 +68,30 @@ export default function TeamInfo() {
   : teamMembers
 
   return (
-    <>
-      <h2>Team Info</h2>
+    <main>
+      <h1>Team Info</h1>
       {(!loadingTeamData && teamData) ?
         <>
           <ul>
             <li>ID: {teamData.id}</li>
             <li>Name: {teamData.name}</li>
-            <li>Team Leader: {getUserName(teamData.teamLeadId)}</li>
+            <li>Team Leader: <Link to={`/user/${teamData.teamLeadId}`}>{getUserName(teamData.teamLeadId)} (id: {teamData.teamLeadId})</Link></li>
           </ul>
-          <label htmlFor="teamMembers">Search for team members: </label>
+          <label htmlFor="teamMembers">Search for team members by ID: </label>
           <input type="text" name="teamMembers" id="teamMembers" placeholder={filterUser} onChange={handleFilterUserName} />
           <p>Team members:</p>
           <ul>
             {filteredUsers.map(element =>
-              <li key={element}>{getUserName(element)}</li>
+              <li key={element}>
+                <Link to={`/user/${element}`}>{getUserName(element)} (id: {element})</Link>
+              </li>
+                // {getUserName(element)} (id: {element})</li>
             )}
           </ul>
         </>
       : <Loading />
       }
       <Link to="/">Return to Teams list</Link>
-    </>
+    </main>
   )
 }

@@ -1,4 +1,5 @@
 import TeamsList from "./components/TeamsList";
+import "./App.css"
 
 function App() {
 

@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import TeamsList from "./components/TeamsList";
 import TeamInfo from "./components/TeamInfo";
+import UserInfo from "./components/UserInfo";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/:id" element={<TeamInfo />} />
+        <Route path="/:teamId" element={<TeamInfo />} />
+        <Route path="/user/:userId" element={<UserInfo />} />
         <Route path="*" element={
           <main>
             <p>No page found, please try again</p>
