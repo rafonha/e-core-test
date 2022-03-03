@@ -37,7 +37,7 @@ export default function TeamsList() {
     : teamsState.teamsData
 
   return (
-    <main data-testid="teamInfoPage">
+    <main data-testid="teamsListPage">
       <h1>Team list</h1>
       <label htmlFor="filterTeamsName">Search for teams by name: </label>
       <input data-testid="filterTeamsInput" type="text" name="filterTeamsName" id="filterTeamsName" placeholder={filterTeams} onChange={handleFilterTeamsName}/>

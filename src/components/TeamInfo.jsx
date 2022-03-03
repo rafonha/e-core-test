@@ -68,7 +68,7 @@ export default function TeamInfo() {
   : teamMembers
 
   return (
-    <main>
+    <main data-testid="teamInfoPage">
       <h1>Team Info</h1>
       {(!loadingTeamData && teamData) ?
         <>
@@ -85,7 +85,6 @@ export default function TeamInfo() {
               <li key={element}>
                 <Link to={`/user/${element}`}>{getUserName(element)} (id: {element})</Link>
               </li>
-                // {getUserName(element)} (id: {element})</li>
             )}
           </ul>
         </>

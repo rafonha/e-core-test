@@ -1,10 +1,10 @@
-import { render, screen, fireEvent, within } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import TeamsList from "./TeamsList"
 
 describe("TeamsList", () => {
     it("should render TeamsList", () => {
         render(<TeamsList />);
-        const div = screen.getByTestId("teamInfoPage")
+        const div = screen.getByTestId("teamsListPage")
         expect(div).toBeTruthy()
     })
 

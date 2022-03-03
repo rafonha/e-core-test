@@ -2,7 +2,9 @@
 E-core front-end exercise
 
 ## About the project
-
+Main files:
+- Team's List: src/components/TeamsList
+- Team Info: src/components/TeamInfo
 
 ### Built With
 
